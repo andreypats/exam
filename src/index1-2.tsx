@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+
 // 1
 // function UsersList() {
 //     const results = useState<any>(["Bob", "Alex", "Ann"])
@@ -17,7 +18,7 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 
-// Какой тип правильнее указать вместо "any" при типизации стэйта?    -Array<string>   ???
+// Какой тип правильнее указать вместо "any" при типизации стэйта?    -Array<string>
 
 
 // 2
@@ -33,7 +34,7 @@ import './index.css';
 //     <UsersList />, document.getElementById('root')
 // );
 
-// Что вернёт выражение: typeof useState?       -function      ????
+// Что вернёт выражение: typeof useState?       -function
 
 
 
@@ -53,7 +54,7 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 
-// Чему равно results.length?           -2      ????
+// Чему равно results.length?           -2
 
 
 
@@ -70,7 +71,7 @@ import './index.css';
 // ReactDOM.render(
 //     <UsersList/>, document.getElementById('root')
 // );
-// Что вернёт выражение: Array.isArray(users)?       -true      ???
+// Что вернёт выражение: Array.isArray(users)?       -true
 
 
 
@@ -86,7 +87,7 @@ import './index.css';
 // ReactDOM.render(
 //     <UsersList/>, document.getElementById('root')
 // );
-// Что вернёт выражение: typeof setUsers?       -function       ????
+// Что вернёт выражение: typeof setUsers?       -function
 
 
 
@@ -132,7 +133,7 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 
-// Что надо вставить вместо XXX, чтобы код заработал?       -getUser    ????
+// Что надо вставить вместо XXX, чтобы код заработал?       -getUser
 // ❗ Ответ дать минимально возможным объёмом кода
 
 
@@ -224,5 +225,5 @@ import './index.css';
 // ReactDOM.render(
 //     <UsersList/>, document.getElementById('root')
 // );
-// Что надо написать вместо XXX, чтобы код работал?
+// Что надо написать вместо XXX, чтобы код работал?         -state
 // ❗ Ответ дать минимально возможным объёмом кода

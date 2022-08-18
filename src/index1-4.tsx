@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
 // 1
 // import React, {useState} from 'react';
 // import ReactDOM from 'react-dom';
@@ -21,10 +20,10 @@ import './index.css';
 // function User(props: UserPropsType) {
 //     return (
 //         <li>
-//             {/*<button onClick={() => props.deleteUser(xxx)}>x</button>*/}
-// User {props.name}: {props.age} y.o.
-// </li>
-// )
+//             <button onClick={() => props.deleteUser(xxx)}>x</button>
+//             User {props.name}: {props.age} y.o.
+//         </li>
+//     )
 // }
 //
 // function UsersList() {
@@ -57,8 +56,10 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 // // Что надо написать вместо xxx, чтобы код работал?
-// -------
-//
+// props.id    ????
+
+
+
 // 2
 // import React, {useState} from 'react';
 // import ReactDOM from 'react-dom';
@@ -115,8 +116,9 @@ import './index.css';
 // );
 //
 // // Что надо написать вместо xxx, чтобы код работал?
-// deleteUser+++++
-//
+// deleteUser   +++++
+
+
 // 3
 // import React, {useState, MouseEvent} from 'react';
 // import ReactDOM from 'react-dom';
@@ -147,10 +149,12 @@ import './index.css';
 // ReactDOM.render(
 //     <Post/>, document.getElementById('root')
 // );
-// // Что надо написать вместо ххх, чтобы Вас не направило на страницу Youtube
-// // при клике по ссылке?
-// -----
-//
+// Что надо написать вместо ххх, чтобы Вас не направило на страницу Youtube
+// при клике по ссылке?
+// e.preventDefault()    ????
+
+
+
 // 4
 // import React, {useState, MouseEvent} from 'react';
 // import ReactDOM from 'react-dom';
@@ -187,15 +191,19 @@ import './index.css';
 // ReactDOM.render(
 //     <AuthForm/>, document.getElementById('root')
 // );
-// // Что надо написать вместо ххх, чтобы данные из формы
-// // не отправлялись на сервер и страница не перезагружалась
-// // при клике по кнопке?
-//
-//
+// Что надо написать вместо ххх, чтобы данные из формы
+// не отправлялись на сервер и страница не перезагружалась
+// при клике по кнопке?
+// e.preventDefault();    ??????
+
+
+
+
 // 5
 // ?????????????
-//
-//
+
+
+
 // 6
 // import React, {useState, MouseEvent, ChangeEvent} from 'react';
 // import ReactDOM from 'react-dom';
@@ -219,9 +227,9 @@ import './index.css';
 // );
 // // Что надо написать вместо ххх, чтобы инпут был контролируемым?
 // value={userName} +++++++
-//
-//
-//
+
+
+
 // 7
 // import React, {useState, MouseEvent, ChangeEvent} from 'react';
 // import ReactDOM from 'react-dom';
@@ -249,9 +257,9 @@ import './index.css';
 // ReactDOM.render(
 //     <User/>, document.getElementById('root')
 // );
-// // Что надо написать вместо ххх,
-// // чтобы после вывода текста в параграф содержимое формы ввода очищалось?
-// setUserName('')+++++
+// Что надо написать вместо ххх,
+// чтобы после вывода текста в параграф содержимое формы ввода очищалось?
+// setUserName('')   +++++
 //
 //
 // 8
@@ -287,10 +295,12 @@ import './index.css';
 // ReactDOM.render(
 //     <Notes/>, document.getElementById('root')
 // );
-// // Что надо написать вместо ххх,
-// // чтобы при потере инпутом фокуса добавлялась заметка?
-// onBlur++++++
-//
+// Что надо написать вместо ххх,
+// чтобы при потере инпутом фокуса добавлялась заметка?
+// onBlur   ++++++
+
+
+
 // 9
 // import React, {useState, MouseEvent, ChangeEvent} from 'react';
 // import ReactDOM from 'react-dom';
@@ -314,7 +324,7 @@ import './index.css';
 //             />
 //             <div>
 //                 <button
-//                     // onClick={xxx}
+//                     onClick={xxx}
 //                 >Clear notes list</button>
 //             </div>
 //             <h4>Notes:</h4>
@@ -328,6 +338,6 @@ import './index.css';
 // ReactDOM.render(
 //     <Notes/>, document.getElementById('root')
 // );
-// // Что надо написать вместо ххх,
-// // чтобы при клике список заметок очищался?
-// -------
+// Что надо написать вместо ххх,
+// чтобы при клике список заметок очищался?
+// ()=>setNotes([])   ?????

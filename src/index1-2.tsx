@@ -165,8 +165,7 @@ import './index.css';
 //
 // function UsersList() {
 //     const [users, setUsers] = useState<Array<string>>(["Bob", "Alex", "Ann"])
-//     const getUser = (user: string) => <li>{user}</li>
-//     console.log(typeof getUser)
+//     const getUser = (user: string) => <li>{user}</li>//
 //
 //     return (
 //         <main>

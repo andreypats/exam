@@ -45,7 +45,7 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 // Что надо написать вместо xxx, чтобы код работал оптимально?
-// key    ????
+// key    ++++
 
 
 // 2
@@ -84,7 +84,7 @@ import './index.css';
 // );
 // Что надо написать вместо xxx, чтобы код работал?
 //  setUsers------
-//  u   ?????
+//  u   ++++
 
 
 // 3

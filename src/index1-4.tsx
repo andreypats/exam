@@ -56,7 +56,7 @@ import './index.css';
 //     <UsersList/>, document.getElementById('root')
 // );
 // // Что надо написать вместо xxx, чтобы код работал?
-// props.id    ????
+// props.id    ++++
 
 
 
@@ -151,7 +151,7 @@ import './index.css';
 // );
 // Что надо написать вместо ххх, чтобы Вас не направило на страницу Youtube
 // при клике по ссылке?
-// e.preventDefault()    ????
+// e.preventDefault()    +++++
 
 
 
@@ -194,13 +194,36 @@ import './index.css';
 // Что надо написать вместо ххх, чтобы данные из формы
 // не отправлялись на сервер и страница не перезагружалась
 // при клике по кнопке?
-// e.preventDefault();    ??????
+// e.preventDefault()    +++++
 
 
 
 
 // 5
-// ?????????????
+// import React, {useState, MouseEvent, ChangeEvent} from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+//
+// function User() {
+//     const [userName, setUserName] = useState<string>("")
+//     // const onChangeHandler = (e: xxx )=> setUserName(e.currentTarget.value)
+//     return (
+//         <div>
+//             <p>{userName}</p>
+//             <input
+//                 // onChange={onChangeHandler}
+//             />
+//         </div>
+//     )
+// }
+//
+// ReactDOM.render(
+//     <User/>, document.getElementById('root')
+// );
+// Что надо написать вместо ххх, чтобы правильно типизировать
+// параметр функции?
+// ChangeEvent<HTMLInputElement>   +++++
+
 
 
 
@@ -340,4 +363,4 @@ import './index.css';
 // );
 // Что надо написать вместо ххх,
 // чтобы при клике список заметок очищался?
-// ()=>setNotes([])   ?????
+// ()=>setNotes([])   ++++

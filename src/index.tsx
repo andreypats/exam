@@ -1,25 +1,57 @@
+// import React  from 'react';
 
-
-import React, {useState, MouseEvent, ChangeEvent, ChangeEventHandler} from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function User() {
-    const [userName, setUserName] = useState<string>("")
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>)=> setUserName(e.currentTarget.value)
+function LongCommentChecker() {
+    const minSizeComment = 5
+    const [isCommentReady, setIsCommentReady] = useState<boolean>(false)
+    const [comment, setComment] = useState<string>('')
+
+    const onClickSendComment = () => {
+        if (comment.length > minSizeComment) {
+            setComment('')
+        }
+    }
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const newComment = e.currentTarget.value
+        if (newComment.length > minSizeComment) {
+            setIsCommentReady(true)
+        } else {
+            setIsCommentReady(false)
+        }
+        setComment(newComment)
+    }
+
     return (
-        <div>
-            <p>{userName}</p>
-            <input
+        <main>
+            <textarea
+                placeholder={'Your comment must have more than 5 charters'}
+                value={comment}
                 onChange={onChangeHandler}
             />
-        </div>
+            <div>
+                <button
+                    disabled={comment.length < minSizeComment}
+                    onClick={onClickSendComment}>
+                    Send comment
+                </button>
+            </div>
+        </main>
     )
 }
 
-ReactDOM.render(
-    <User/>, document.getElementById('root')
-);
-// Что надо написать вместо ххх, чтобы правильно типизировать
-// параметр функции?
+ReactDOM.render(<LongCommentChecker/>, document.getElementById('root'));
+
+// Что нужно написать вместо XXX, чтобы кнопка отправки комментария отрабатывала верно:
+// первоначально кнопка должна быть в состоянии disable, а после успешного выполнения условия
+// (комментарий должен быть больше 5 символов) должна раздизаблиться.
+// ❗ Ответ необходимо дать на основании данных (переменных), которые уже есть в коде
+
+
+
+
+
+
 

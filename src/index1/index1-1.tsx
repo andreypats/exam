@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import '../index.css';
 
 // 1
 // export const Wrapper  = () => {
@@ -51,8 +51,7 @@ import './index.css';
 //📼 Контент видео
 //📊 Статистика лайков
 // ❗ Ответ дать минимально возможным объёмом кода
-// {YoutubeVideo()}    ------
-// <YoutubeVideo/>    ?????
+// <YoutubeVideo/>    +++++
 
 
 // 3

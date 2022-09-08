@@ -135,9 +135,8 @@ import React from 'react';
 // первоначально кнопка должна быть в состоянии disable, а после успешного выполнения условия
 // (комментарий должен быть больше 5 символов) должна раздизаблиться.
 // ❗ Ответ необходимо дать на основании данных (переменных), которые уже есть в коде
-// comment.length > 5    -------
-// comment.length < minSizeComment   ----
-// comment.length <= minSizeComment  ?????
+//
+// comment.length <= minSizeComment  +++++
 
 
 // 5

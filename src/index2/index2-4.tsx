@@ -73,7 +73,7 @@ import React from 'react';
 // const result = calculator(10, {XXX, payload: 5})
 // console.log(result)
 //Что надо написать вместо XXX, что бы переменная result содержала значение 5?
-// type: "SUB"  ???????
+// type: "SUB"  ++++
 
 
 //4
@@ -166,6 +166,6 @@ import React from 'react';
 //Какой код должен быть написан вместо XXX и YYY в типе //ChangeUserPasswordTypeAT, что бы редьюсер работал?
 //В ответе напишите через пробел: XXX  YYY
 //
-// id: number newPassword: string    ????
+// id: number newPassword: string    ++++
 
 

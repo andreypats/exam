@@ -26,7 +26,7 @@ import React from 'react';
 // const changeTrackPlayStatusAC = (status: Status) => ({type: 'TRACK-STATUS-CHANGED', status})
 
 //Какой тип должен быть вместо XXX?
-// 'TRACK-URL-CHANGED'
+// 'TRACK-URL-CHANGED'   ++++
 
 
 // 2

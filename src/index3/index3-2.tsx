@@ -42,8 +42,9 @@ import React from 'react';
 // store.dispatch({type: 'ANY'})
 
 //Что нужно написать вместо XXX, чтобы получить актуальный стейт?
-// initialState  -----
-// initialState.items  ?????
+//
+// initialState.items  -----
+// initialState ????
 
 
 // 3
@@ -237,8 +238,8 @@ import React from 'react';
 // )
 
 // Что нужно написать вместо XXX, YYY и ZZZ, чтобы отобразился список студентов?
-//  -------
-// Provider store appStore   ????
+//
+// Provider store appStore   +++++
 
 // 6
 // import {createStore} from 'redux'

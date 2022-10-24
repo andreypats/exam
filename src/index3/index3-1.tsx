@@ -64,8 +64,7 @@ import React from 'react';
 // console.log(newState.status === 'Paused')
 
 //Напишите вместо XXX правильный вызов правильного AC, чтобы в консоли было true
-// changeTrackPlayStatusAC   ----
-// changeTrackPlayStatusAC ('Paused')   ????
+// changeTrackPlayStatusAC ('Paused')   ++++
 
 
 // 3
@@ -136,6 +135,7 @@ import React from 'react';
 
 // Что нужно написать вместо XXX, чтобы в консоли увидеть true?
 // ❗ Захардкодженные значения использовать запрещено
+//
 // action.trackId   ++++
 
 // 5
@@ -161,8 +161,8 @@ import React from 'react';
 // console.log(newState[3].likesCount === 0)
 
 // Что нужно написать вместо XXX, чтобы трек корректно добавился и в консоли увидеть true?
-// {...state, [action.trackId]: {id: action.trackId, likesCount: 0}}   -----
-// [...state, {id: action.trackId, likesCount: 0}]   ????
+//
+// [...state, {id: action.trackId, likesCount: 0}]   +++++
 
 
 // 6

@@ -44,7 +44,8 @@ import React from 'react';
 //Что нужно написать вместо XXX, чтобы получить актуальный стейт?
 //
 // initialState.items  -----
-// initialState ????
+// initialState ----- проверено дважды
+// store.getState()  ?????
 
 
 // 3

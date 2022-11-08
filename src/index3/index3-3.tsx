@@ -145,9 +145,7 @@ import React from 'react';
 // 2) Компонент TempDisplay не должен перерисовываться при нажатии на кнопку "Увеличить на 10 секунд"
 
 // Пример ответа: useEffect(() => setCounter(count + 1), [count])
-
-// const increaseTemp = useCallback(() => setTemp(temp + 1), [temp])    ----
-// useCallback(() => setTemp(temp + 1), [temp])    ?????
+// useCallback(() => setTemp(temp + 1), [temp])    ++++
 
 
 // 4
@@ -209,9 +207,7 @@ import React from 'react';
 // при нажатии на кнопку "Увеличить на 10 секунд" ?
 
 // Ответ дайте через пробел: 111 222
-
-// useMemo buttons    ------
-// useMemo isAdmin    ?????
+// useMemo isAdmin    ++++
 
 
 

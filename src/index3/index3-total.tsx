@@ -1,105 +1,27 @@
 import React from 'react';
 
 // 1
-// import {combineReducers, createStore} from 'redux'
-//
-// let initialState = {items: [{name: 'Dimych'}, {name: 'Ignat'}]}
-// const usersReducer = (state = initialState, action: any) => {
-//     return state
-// }
-//
-// const store = createStore(combineReducers({
-//     users: usersReducer
-// }))
-//
-// store.XXX(() => {
-//     console.log('state changed')
-// })
-//
-// store.dispatch({type: 'ANY'})
-
-// Что нужно написать вместо XXX, чтобы в консоли увидеть 'state changed'?
-// subscribe   ++++
 
 
 // 2
-// import {combineReducers, createStore} from 'redux'
-//
-// let initialState = {items: [{name: 'Dimych'}, {name: 'Ignat'}]}
-// const usersReducer = (state = initialState, action: any) => {
-//     return state
-// }
-//
-// const store = createStore(combineReducers({
-//     users: usersReducer
-// }))
-//
-// store.subscribe(() => {
-//     const state = XXX
-//     console.log(state)
-// })
-//
-// store.dispatch({type: 'ANY'})
-
-//Что нужно написать вместо XXX, чтобы получить актуальный стейт?
-//
-// store.getState()  ++++
 
 
 // 3
-// import {combineReducers, createStore} from 'redux'
-// import ReactDOM from 'react-dom'
-// import {Provider, useSelector} from 'react-redux'
-// import React from 'react'
-//
-// let initialState = {items:
-//         [
-//             {id: 1, name: 'Dimych'},
-//             {id: 2, name: 'Ignat'}
-//         ]
-// }
-// const usersReducer = (state = initialState, action: any) => {
-//     return state
-// }
-//
-// let authInitialState = {login: 'Margo', settings: {theme: 'dark'}}
-// const authReducer = (state = authInitialState, action: any) => {
-//     return state
-// }
-//
-// let rootReducer = combineReducers({
-//     users: usersReducer,
-//     auth: authReducer
-// })
-//
-// const store = createStore(rootReducer)
-// type RootStateType = ReturnType<typeof rootReducer>
-//
-// const selector = (state: RootStateType) => state.users.items
-//
-// const Users = () => {
-//
-//     const users = XXX
-//
-//     return <ul>
-//         {users.map(u => <li key={u.id}>{u.name}</li>)}
-//     </ul>
-// }
-//
-// ReactDOM.render(<div>
-//         <Provider store={store}>
-//             <Users/>
-//         </Provider>
-//     </div>,
-//     document.getElementById('root')
-// )
-
-// Что нужно написать вместо XXX, чтобы отрендерить список юзеров?
-// ❗ Ответ дать минимально возможным объёмом кода
-// useSelector(selector)  ++++
 
 
 // 4
+
+
+// 5
+
+
+// 6
+
+
+// 7
+
+
+// 8
 // import React, {useState, useReducer, useEffect} from 'react';
 // import ReactDOM from 'react-dom';
 // import './index.css';
@@ -166,10 +88,10 @@ import React from 'react';
 //     <Counter/>, document.getElementById('root')
 // );
 // Что надо написать вместо XXX и YYY, чтобы код работал? Напишите через пробел.
-// useReducer useState   ++++
+// useReducer useState  ????
 
 
-// 5
+// 9
 // import React from 'react'
 // import { createStore } from 'redux'
 // import { Provider, useSelector, useDispatch } from 'react-redux'
@@ -235,12 +157,13 @@ import React from 'react';
 //     </div>,
 //     document.getElementById('root')
 // )
-
-// Что нужно написать вместо XXX, YYY и ZZZ, чтобы отобразился список студентов?
 //
-// Provider store appStore   +++++
+// // Что нужно написать вместо XXX, YYY и ZZZ, чтобы отобразился список студентов?
+// Provider store appStore   ++++
 
-// 6
+
+
+// 10
 // import {createStore} from 'redux'
 // import ReactDOM from 'react-dom'
 // import {Provider, useSelector, useDispatch} from 'react-redux'
@@ -316,7 +239,11 @@ import React from 'react';
 
 // Что нужно написать вместо XXX, YYY и ZZZ, чтобы при клике по имени студент
 // удалялся из списка? Напишите через пробел.
-// dispatch RemoveStudentAC s.id    ++++
+// dispatch RemoveStudentAC s.id  ++++
+
+
+
+
 
 
 

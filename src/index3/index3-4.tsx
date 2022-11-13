@@ -56,7 +56,7 @@ import React from 'react';
 // console.log(newState[300].likesCount === 0)
 
 // Что нужно написать вместо XXX, чтобы в консоли увидеть true?
-// addTrackAC(300)  ????
+// addTrackAC(300)  ++++
 
 
 // 3

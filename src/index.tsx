@@ -1,109 +1,170 @@
-import React, {useState, useReducer, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import axios from 'axios'
+import React, {useEffect, useState} from 'react'
+import ReactDOM from 'react-dom/client';
 
-const changeCounter = (state: number, action: any): number => {
-    switch (action.type) {
-        case "INC_VALUE":
-            return state + 1
-        case "RESET":
-            return 0
-        case "DEC_VALUE":
-            return state - 1
-        default:
-            return state
+// TYPES
+type UserType = {
+    avatar: string
+    email: string
+    first_name: string
+    id: 1
+    last_name: string
+}
+
+type ColorType = {
+    color: string
+    id: number
+    name: string
+    pantone_value: string
+    year: number
+}
+
+// type UsersResponseType = {
+//     total: number
+//     total_pages: number
+//     page: number
+//     per_page: number
+//     support: {
+//         url: string
+//         text: string
+//     }
+//     url: string
+//     data: UserType[]
+// }
+//
+// type ColorsResponseType = {
+//     total: number
+//     total_pages: number
+//     page: number
+//     per_page: number
+//     support: {
+//         url: string
+//         text: string
+//     }
+//     url: string
+//     data: ColorType[]
+// }
+
+type CommonResponseType< T> = {
+    total: number
+    total_pages: number
+    page: number
+    per_page: number
+    support: {
+        url: string
+        text: string
+    }
+    url: string
+    data: T
+}
+
+// Api
+const instance = axios.create({
+    baseURL: 'https://reqres.in/api/'
+})
+
+const reqresAPI = {
+    getUsers() {
+        // return instance.get<UsersResponseType>('users')
+        return instance.get<CommonResponseType<{item: UserType[]}>>('users')
+    },
+    getColors() {
+        // return instance.get<ColorsResponseType>('colors')
+        return instance.get<CommonResponseType<{item: ColorType[]}>>('colors')
     }
 }
 
-function Counter() {
-    const [value, setValue] = useReducer(changeCounter, 0)
-    const [isCounter, setIsCounter] = useState(true)
-    const commonStyles: React.CSSProperties = {
-        border: "1px solid black",
-        margin: "100px auto",
-        width: "300px",
-        height: "150px",
-        textAlign: "center",
-    }
-    const btnStyles: React.CSSProperties = {
-        color: "white",
-        fontWeight: "bold",
-        backgroundColor: "darkgray",
-        borderRadius: "3px",
-        minWidth: "40px"
-    }
+
+// App
+const App = () => {
+    return (
+        <>
+            <h1>Reqres API</h1>
+            <Users/>
+            <Colors/>
+        </>
+    )
+}
+
+const Users = () => {
+
+    const [users, setUsers] = useState<UserType[]>([])
+
+    useEffect(() => {
+        reqresAPI.getUsers()
+            .then((res) => setUsers(res.data.data))
+    }, [])
 
     return (
-        <div style={commonStyles}>{
-            isCounter
-                ? <div >
-                    <div style={{marginBottom: "20px"}}>
-                        <h2>{value}</h2>
-                        <button
-                            style={{...btnStyles, backgroundColor: "red"}}
-                            onClick={() => setIsCounter(false)}>OFF</button>
-                    </div>
-                    <button style={btnStyles} onClick={() => setValue({type: "INC_VALUE"})}>+</button>
-                    <button style={btnStyles} onClick={() => setValue({type: "RESET"})}>0</button>
-                    <button style={btnStyles} onClick={() => setValue({type: "DEC_VALUE"})}>-</button>
+        <div>
+            <h2>Users</h2>
+            <div style={{display: 'flex'}}>
+                {
+                    users.map(u => {
+                        return (
+                            <div key={u.id} style={{marginRight: '25px'}}>
+                                <p>{u.first_name}</p>
+                                <img src={u.avatar} alt=""/>
+                            </div>
+                        )
+                    })
+                }</div>
+        </div>
+    )
+}
 
-                </div>
-                : <div style={{textAlign: "center"}}>
-                    <h2>Counter not working</h2>
-                    <button
-                        style={{...btnStyles, backgroundColor: "green"}}
-                        onClick={() => setIsCounter(true)}>ON</button>
-                </div>
-        }
+const Colors = () => {
+
+    const [colors, setColors] = useState<ColorType[]>([])
+
+    useEffect(() => {
+        reqresAPI.getColors()
+            .then((res) => setColors(res.data.data))
+    }, [])
+
+    return (
+        <div>
+            <h2>Colors</h2>
+            <div style={{display: 'flex'}}>
+                {
+                    colors.map(c => {
+                        return (
+                            <div key={c.id} style={{marginRight: '25px'}}>
+                                <p>{c.name}</p>
+                                <div style={{backgroundColor: c.color, width: '128px', height: '30px'}}>
+                                    <b>{c.color}</b>
+                                </div>
+                            </div>
+                        )
+                    })
+                }</div>
         </div>
     )
 }
 
 
-ReactDOM.render(
-    <Counter/>, document.getElementById('root')
-);
-// Что надо написать вместо XXX и YYY, чтобы код работал? Напишите через пробел.
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(<App/>)
 
+// Описание:
+// При запуске проекта на экране вы увидите 2 списка: Users и Colors.
+// С ними все хорошо, но обратите внимание на типизацию ответов с сервера UsersResponseType и ColorsResponseType.
+// Дублирование типов на лицо.
+// Ваша задача написать дженериковый тип CommonResponseType и заменить им дублирующие типы.
+// Очередность свойств в типах менять запрещено (по причине что нам будет тяжело перебрать все правильные варианты :) )
+// Параметр тип назовите буквой T
 
+// В качестве ответа нужно скопировать полностью рабочий дженериковый тип CommonResponseType
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// type CommonResponseType = {
+//     total: number
+//     total_pages: number
+//     page: number
+//     per_page: number
+//     support: {
+//         url: string
+//         text: string
+//     }
+//     url: string
+//     data: CommonType<T>
+// }

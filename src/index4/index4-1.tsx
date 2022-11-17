@@ -731,3 +731,17 @@ import React from 'react';
 //     url: string
 //     data: CommonType<T>
 // }
+
+// Ответ  ????
+// type CommonResponseType<T> = {
+//     total: number
+//     total_pages: number
+//     page: number
+//     per_page: number
+//     support: {
+//         url: string
+//         text: string
+//     }
+//     url: string
+//     data: T
+// }

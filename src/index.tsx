@@ -45,7 +45,7 @@ type ColorType = {
 //     data: ColorType[]
 // }
 
-type CommonResponseType< T> = {
+type CommonResponseType<T> = {
     total: number
     total_pages: number
     page: number
@@ -66,11 +66,11 @@ const instance = axios.create({
 const reqresAPI = {
     getUsers() {
         // return instance.get<UsersResponseType>('users')
-        return instance.get<CommonResponseType<{item: UserType[]}>>('users')
+        return instance.get<CommonResponseType<[item: UserType]>>('users')
     },
     getColors() {
         // return instance.get<ColorsResponseType>('colors')
-        return instance.get<CommonResponseType<{item: ColorType[]}>>('colors')
+        return instance.get<CommonResponseType<[item: ColorType]>>('colors')
     }
 }
 

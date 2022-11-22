@@ -64,7 +64,7 @@ import React from 'react';
 
 // Пример ответа: id status isDone
 
-// title completed   ????
+// title completed   ++++
 
 
 // 2
@@ -233,7 +233,8 @@ import React from 'react';
 // Исправленную версию строки напишите в качестве ответа.
 // Пример ответа: return Promise.resolve<PostType[]>(data)
 
-// return instance.post<CommentType[]>('comments', {body: body})  ?????
+// return instance.post<CommentType[]>('comments', {body: body})  ------
+// return instance.post<CommentType[]>('comments', {body: payload.body})
 
 
 // 4
@@ -400,7 +401,7 @@ import React from 'react';
 // Исправленную версию строки напишите в качестве ответа.
 // Пример ответа: photosAPI.updatePhotoTitle(id, title)
 
-// return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})  ????
+// return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})  -----
 
 
 // 6
@@ -494,7 +495,7 @@ import React from 'react';
 // Задача: найти эти ошибки, и исправленную версию строки написать в качестве ответа.
 // Пример ответа: const [currentPage, setCurrentPage] = useState(page)
 
-// return instance.get<PhotoType[]>(`photos?_limit=2&_page=${page}`)   ????
+// return instance.get<PhotoType[]>(`photos?_limit=2&_page=${page}`)   +++++
 
 
 // 7
@@ -568,7 +569,7 @@ import React from 'react';
 //
 // P.S. Эта ошибка из реальной жизни, студенты часто ошибаются и не могут понять в чем дело.
 
-// return instance.get<TodoType>(`todos/${todoId}`)  ????
+// return instance.get<TodoType>(`todos/${todoId}`)  ++++
 
 
 // 8
@@ -732,7 +733,7 @@ import React from 'react';
 //     data: CommonType<T>
 // }
 
-// Ответ  ????
+// Ответ  ++++
 // type CommonResponseType<T> = {
 //     total: number
 //     total_pages: number

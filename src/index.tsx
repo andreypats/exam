@@ -1,144 +1,72 @@
 import axios from 'axios'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
 
-// TYPES
-type UserType = {
-    avatar: string
-    email: string
-    first_name: string
-    id: 1
-    last_name: string
-}
-
-type ColorType = {
-    color: string
+// Types
+type PhotoType = {
+    albumId: number
     id: number
-    name: string
-    pantone_value: string
-    year: number
-}
-
-// type UsersResponseType = {
-//     total: number
-//     total_pages: number
-//     page: number
-//     per_page: number
-//     support: {
-//         url: string
-//         text: string
-//     }
-//     url: string
-//     data: UserType[]
-// }
-//
-// type ColorsResponseType = {
-//     total: number
-//     total_pages: number
-//     page: number
-//     per_page: number
-//     support: {
-//         url: string
-//         text: string
-//     }
-//     url: string
-//     data: ColorType[]
-// }
-
-type CommonResponseType<T> = {
-    total: number
-    total_pages: number
-    page: number
-    per_page: number
-    support: {
-        url: string
-        text: string
-    }
+    title: string
     url: string
-    data: T
+    thumbnailUrl: string
 }
+
 
 // Api
 const instance = axios.create({
-    baseURL: 'https://reqres.in/api/'
+    baseURL: 'https://jsonplaceholder.typicode.com/'
 })
 
-const reqresAPI = {
-    getUsers() {
-        // return instance.get<UsersResponseType>('users')
-        return instance.get<CommonResponseType<[item: UserType]>>('users')
+const photosAPI = {
+    getPhoto() {
+        return instance.get<PhotoType>('photos/1')
     },
-    getColors() {
-        // return instance.get<ColorsResponseType>('colors')
-        return instance.get<CommonResponseType<[item: ColorType]>>('colors')
+    updatePhotoTitle(payload: PhotoType) {
+        return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})
     }
 }
 
 
 // App
-const App = () => {
+export const App = () => {
+
+    const [photo, setPhoto] = useState<PhotoType | null>(null)
+
+    useEffect(() => {
+        photosAPI.getPhoto()
+            .then((res) => {
+                setPhoto(res.data)
+            })
+    }, [])
+
+    const updatePhotoHandler = () => {
+        const payload = {
+            title: 'Обновление произошло успешно 🚀',
+            albumId: 1,
+            id: 1,
+            url: "https://via.placeholder.com/600/92c952",
+            thumbnailUrl: "https://via.placeholder.com/150/92c952"
+        }
+        photosAPI.updatePhotoTitle(payload)
+            .then((res) => {
+                setPhoto(res.data)
+            })
+    };
+
     return (
         <>
-            <h1>Reqres API</h1>
-            <Users/>
-            <Colors/>
+            <h1>📸 Фото</h1>
+            <div>
+                <div style={{marginBottom: '15px'}}>
+                    <b>title</b>: {photo?.title}
+                    <button style={{marginLeft: '15px'}}
+                            onClick={updatePhotoHandler}>
+                        Обновить описание к фотографии
+                    </button>
+                </div>
+                <div><img src={photo?.url} alt=""/></div>
+            </div>
         </>
-    )
-}
-
-const Users = () => {
-
-    const [users, setUsers] = useState<UserType[]>([])
-
-    useEffect(() => {
-        reqresAPI.getUsers()
-            .then((res) => setUsers(res.data.data))
-    }, [])
-
-    return (
-        <div>
-            <h2>Users</h2>
-            <div style={{display: 'flex'}}>
-                {
-                    users.map(u => {
-                        return (
-                            <div key={u.id} style={{marginRight: '25px'}}>
-                                <p>{u.first_name}</p>
-                                <img src={u.avatar} alt=""/>
-                            </div>
-                        )
-                    })
-                }</div>
-        </div>
-    )
-}
-
-const Colors = () => {
-
-    const [colors, setColors] = useState<ColorType[]>([])
-
-    useEffect(() => {
-        reqresAPI.getColors()
-            .then((res) => setColors(res.data.data))
-    }, [])
-
-    return (
-        <div>
-            <h2>Colors</h2>
-            <div style={{display: 'flex'}}>
-                {
-                    colors.map(c => {
-                        return (
-                            <div key={c.id} style={{marginRight: '25px'}}>
-                                <p>{c.name}</p>
-                                <div style={{backgroundColor: c.color, width: '128px', height: '30px'}}>
-                                    <b>{c.color}</b>
-                                </div>
-                            </div>
-                        )
-                    })
-                }</div>
-        </div>
     )
 }
 
@@ -147,24 +75,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(<App/>)
 
 // Описание:
-// При запуске проекта на экране вы увидите 2 списка: Users и Colors.
-// С ними все хорошо, но обратите внимание на типизацию ответов с сервера UsersResponseType и ColorsResponseType.
-// Дублирование типов на лицо.
-// Ваша задача написать дженериковый тип CommonResponseType и заменить им дублирующие типы.
-// Очередность свойств в типах менять запрещено (по причине что нам будет тяжело перебрать все правильные варианты :) )
-// Параметр тип назовите буквой T
+// При нажатии на кнопку "Обновить описание к фотографии" title должен обновиться
+// на надпись "Обновление произошло успешно 🚀", но из-за невнимательности была допущена ошибка
+//
+// Найдите и исправьте ошибку
+// Исправленную версию строки напишите в качестве ответа.
+// Пример ответа: photosAPI.updatePhotoTitle(id, title)
 
-// В качестве ответа нужно скопировать полностью рабочий дженериковый тип CommonResponseType
-
-// type CommonResponseType = {
-//     total: number
-//     total_pages: number
-//     page: number
-//     per_page: number
-//     support: {
-//         url: string
-//         text: string
-//     }
-//     url: string
-//     data: CommonType<T>
-// }
+// return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})  -----

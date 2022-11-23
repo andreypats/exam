@@ -234,7 +234,8 @@ import React from 'react';
 // Пример ответа: return Promise.resolve<PostType[]>(data)
 
 // return instance.post<CommentType[]>('comments', {body: body})  ------
-// return instance.post<CommentType[]>('comments', {body: payload.body})
+// return instance.post<CommentType[]>('comments', {body: payload.body})   ????решение мое
+// return instance.post<CommentType[]>('comments', payload)  ????решение из чата
 
 
 // 4
@@ -392,7 +393,7 @@ import React from 'react';
 //
 // const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 // root.render(<App/>)
-
+//
 // Описание:
 // При нажатии на кнопку "Обновить описание к фотографии" title должен обновиться
 // на надпись "Обновление произошло успешно 🚀", но из-за невнимательности была допущена ошибка
@@ -400,8 +401,9 @@ import React from 'react';
 // Найдите и исправьте ошибку
 // Исправленную версию строки напишите в качестве ответа.
 // Пример ответа: photosAPI.updatePhotoTitle(id, title)
-
+//
 // return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})  -----
+// return instance.patch<PhotoType>(`photos/${payload.id}`, {title: payload.title})  ????
 
 
 // 6

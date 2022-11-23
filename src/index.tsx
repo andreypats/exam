@@ -1,28 +1,36 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
 
 // Types
-type PhotoType = {
-    albumId: number
+type CommentType = {
+    postId: number
     id: number
-    title: string
-    url: string
-    thumbnailUrl: string
+    name: string
+    email: string
+    body: string
 }
-
 
 // Api
 const instance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/'
 })
 
-const photosAPI = {
-    getPhoto() {
-        return instance.get<PhotoType>('photos/1')
+const commentsAPI = {
+    getComments() {
+        return instance.get<CommentType[]>('comments?_limit=10')
     },
-    updatePhotoTitle(payload: PhotoType) {
-        return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})
+    createComment(body: string) {
+        const payload = {
+            body,
+            email: 'test@gmail.com',
+            name: 'Name',
+            postId: Math.random()
+        }
+        // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
+        // Promise.resolve() нужно удалить и написать правильный запрос для создания нового комментария
+        // return Promise.resolve()
+        return instance.post<CommentType[]>('comments', payload)
     }
 }
 
@@ -30,56 +38,66 @@ const photosAPI = {
 // App
 export const App = () => {
 
-    const [photo, setPhoto] = useState<PhotoType | null>(null)
+    const [comments, setComments] = useState<CommentType[]>([])
+    const [commentBody, setCommentBody] = useState('')
 
     useEffect(() => {
-        photosAPI.getPhoto()
+        commentsAPI.getComments()
             .then((res) => {
-                setPhoto(res.data)
+                setComments(res.data)
             })
     }, [])
 
-    const updatePhotoHandler = () => {
-        const payload = {
-            title: 'Обновление произошло успешно 🚀',
-            albumId: 1,
-            id: 1,
-            url: "https://via.placeholder.com/600/92c952",
-            thumbnailUrl: "https://via.placeholder.com/150/92c952"
-        }
-        photosAPI.updatePhotoTitle(payload)
-            .then((res) => {
-                setPhoto(res.data)
+    const createPostHandler = () => {
+        commentsAPI.createComment(commentBody)
+            .then((res: any) => {
+                const newComment = res.data
+                setComments([newComment, ...comments])
+                setCommentBody('')
             })
+    };
+
+    const createTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setCommentBody(e.currentTarget.value)
     };
 
     return (
         <>
-            <h1>📸 Фото</h1>
-            <div>
-                <div style={{marginBottom: '15px'}}>
-                    <b>title</b>: {photo?.title}
-                    <button style={{marginLeft: '15px'}}
-                            onClick={updatePhotoHandler}>
-                        Обновить описание к фотографии
-                    </button>
-                </div>
-                <div><img src={photo?.url} alt=""/></div>
+            <h1>📝 Список комментариев</h1>
+
+            <div style={{marginBottom: '15px'}}>
+                <input style={{width: '300px'}}
+                       type="text"
+                       value={commentBody}
+                       placeholder={'Введите новый комментрарий'}
+                       onChange={createTitleHandler}
+                />
+                <button style={{marginLeft: '15px'}}
+                        onClick={() => createPostHandler()}>
+                    Добавить новый комментарий
+                </button>
             </div>
+
+            {
+                comments.map(c => {
+                    return <div key={c.id}><b>Comment</b>: {c.body} </div>
+                })
+            }
         </>
     )
 }
-
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(<App/>)
 
 // Описание:
-// При нажатии на кнопку "Обновить описание к фотографии" title должен обновиться
-// на надпись "Обновление произошло успешно 🚀", но из-за невнимательности была допущена ошибка
-//
-// Найдите и исправьте ошибку
+// Напишите запрос на сервер для создания нового комментария.
+// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
 // Исправленную версию строки напишите в качестве ответа.
-// Пример ответа: photosAPI.updatePhotoTitle(id, title)
+// Пример ответа: return Promise.resolve<PostType[]>(data)
 
-// return instance.put<PhotoType>(`photos/${payload.id}`, {title: payload.title})  -----
+// return instance.post<CommentType[]>('comments', {body: body})  ------
+// return instance.post<CommentType[]>('comments', {body: payload.body})   ????решение мое
+
+// return instance.post<CommentType[]>('comments', payload)  ????решение из чата
+// решение из чата

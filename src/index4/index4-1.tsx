@@ -235,7 +235,7 @@ import React from 'react';
 
 // return instance.post<CommentType[]>('comments', {body: body})  ------
 // return instance.post<CommentType[]>('comments', {body: payload.body})   ????решение мое
-// return instance.post<CommentType[]>('comments', payload)  ????решение из чата
+// return instance.post<CommentType[]>('comments', payload)  ????решение из чата (возможно надо бэктики поставить на comments)
 
 
 // 4

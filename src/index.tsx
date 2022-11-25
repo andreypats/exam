@@ -1,6 +1,10 @@
+
 import axios from 'axios'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client';
+import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux';
+import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 // Types
 type CommentType = {
@@ -19,65 +23,58 @@ const instance = axios.create({
 const commentsAPI = {
     getComments() {
         return instance.get<CommentType[]>('comments?_limit=10')
-    },
-    createComment(body: string) {
-        const payload = {
-            body,
-            email: 'test@gmail.com',
-            name: 'Name',
-            postId: Math.random()
-        }
-        // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
-        // Promise.resolve() нужно удалить и написать правильный запрос для создания нового комментария
-        // return Promise.resolve()
-        return instance.post<CommentType[]>('comments', payload)
     }
 }
 
+// Reducer
+const initState = [] as CommentType[]
+
+type InitStateType = typeof initState
+
+const commentsReducer = (state: InitStateType = initState, action: ActionsType) => {
+    switch (action.type) {
+        case 'COMMENTS/GET-COMMENTS':
+            return action.comments
+        default:
+            return state
+    }
+}
+
+const getCommentsAC = (comments: CommentType[]) => ({type: 'COMMENTS/GET-COMMENTS', comments} as const)
+type ActionsType = ReturnType<typeof getCommentsAC>
+
+const getCommentsTC = (): ThunkAction<void, RootState, unknown, ActionsType> => (dispatch) => {
+    commentsAPI.getComments()
+        .then((res) => {
+            dispatch(getCommentsAC(res.data))
+        })
+}
+
+
+// Store
+const rootReducer = combineReducers({
+    comments: commentsReducer,
+})
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+type RootState = ReturnType<typeof store.getState>
+type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
+const useAppDispatch = () => useDispatch<AppDispatch>()
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 // App
 export const App = () => {
 
-    const [comments, setComments] = useState<CommentType[]>([])
-    const [commentBody, setCommentBody] = useState('')
+    const comments = useAppSelector(state => state.comments)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        commentsAPI.getComments()
-            .then((res) => {
-                setComments(res.data)
-            })
+        dispatch(getCommentsTC())
     }, [])
-
-    const createPostHandler = () => {
-        commentsAPI.createComment(commentBody)
-            .then((res: any) => {
-                const newComment = res.data
-                setComments([newComment, ...comments])
-                setCommentBody('')
-            })
-    };
-
-    const createTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setCommentBody(e.currentTarget.value)
-    };
 
     return (
         <>
             <h1>📝 Список комментариев</h1>
-
-            <div style={{marginBottom: '15px'}}>
-                <input style={{width: '300px'}}
-                       type="text"
-                       value={commentBody}
-                       placeholder={'Введите новый комментрарий'}
-                       onChange={createTitleHandler}
-                />
-                <button style={{marginLeft: '15px'}}
-                        onClick={() => createPostHandler()}>
-                    Добавить новый комментарий
-                </button>
-            </div>
-
             {
                 comments.map(c => {
                     return <div key={c.id}><b>Comment</b>: {c.body} </div>
@@ -87,17 +84,13 @@ export const App = () => {
     )
 }
 
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(<App/>)
+root.render(<Provider store={store}> <App/></Provider>)
 
 // Описание:
-// Напишите запрос на сервер для создания нового комментария.
-// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
-// Исправленную версию строки напишите в качестве ответа.
-// Пример ответа: return Promise.resolve<PostType[]>(data)
-
-// return instance.post<CommentType[]>('comments', {body: body})  ------
-// return instance.post<CommentType[]>('comments', {body: payload.body})   ????решение мое
-
-// return instance.post<CommentType[]>('comments', payload)  ????решение из чата
-// решение из чата
+// Ваша задача стоит в том чтобы правильно передать нужные типы в дженериковый тип ThunkAction<any, any, any, any>.
+// Что нужно написать вместо any, any, any, any чтобы правильно типизировать thunk creator?
+// Ответ дайте через пробел
+// Пример ответа: unknown status isDone void
+// CommentType, InitStateType, CommentType[], ActionsType   ------
